@@ -25,6 +25,7 @@
 #include "Targets/Lanai.h"
 #include "Targets/Le64.h"
 #include "Targets/M68k.h"
+#include "Targets/MCS51.h"
 #include "Targets/MSP430.h"
 #include "Targets/Mips.h"
 #include "Targets/NVPTX.h"
@@ -670,6 +671,8 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
     default:
       return new CSKYTargetInfo(Triple, Opts);
     }
+  case llvm::Triple::mcs51:
+    return new MCS51TargetInfo(Triple, Opts);
   }
 }
 } // namespace targets
