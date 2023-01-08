@@ -25,6 +25,7 @@
 #include "Targets/Lanai.h"
 #include "Targets/LoongArch.h"
 #include "Targets/M68k.h"
+#include "Targets/MCS51.h"
 #include "Targets/MSP430.h"
 #include "Targets/Mips.h"
 #include "Targets/NVPTX.h"
@@ -738,6 +739,7 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
     default:
       return std::make_unique<CSKYTargetInfo>(Triple, Opts);
     }
+
   case llvm::Triple::loongarch32:
     switch (os) {
     case llvm::Triple::Linux:
@@ -760,6 +762,9 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
 
   case llvm::Triple::xtensa:
     return std::make_unique<XtensaTargetInfo>(Triple, Opts);
+ 
+  case llvm::Triple::mcs51:
+    return new MCS51TargetInfo(Triple, Opts);
   }
 }
 } // namespace targets
